@@ -62,11 +62,11 @@ function dayRow(day) {
     td.textContent = text;
     tr.appendChild(td);
   }
-
+  
   if (isGoodDay(day, state.limits)) {
     tr.classList.add("good");
   }
-
+  
   return tr;
 }
 
@@ -76,7 +76,14 @@ function render() {
   } else {
     summaryEl.textContent = "";
   }
-
+  
   const rows = state.days.map(dayRow);
   rowsEl.replaceChildren(...rows);
+}
+
+for (const input of [rainInput, windInput]) {
+  input.addEventListener("input", () => {
+    state.limits = { rain: Number(rainInput.value), wind: Number(windInput.value) };
+    render();
+  });
 }
