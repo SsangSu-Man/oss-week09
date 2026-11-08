@@ -7,7 +7,7 @@
 // 확인: 출력이 주석의 예상과 전부 같습니다.
 // 커밋 메시지: p6: check (P7 에서 늘린 것은 p7: reasons 에 같이)
 
-import { toDays, isGoodDay, summarize } from "./logic.js";
+import { toDays, isGoodDay, summarize, reasons } from "./logic.js";
 
 const daily = {
     time: ["11-08", "11-09", "11-10", "11-11"],
@@ -26,3 +26,9 @@ console.log(isGoodDay(days[2], limits)); // false (풍속만 기준을 넘음)
 console.log(isGoodDay(days[3], limits)); // false (강수만 기준을 넘음)
 console.log(summarize(days, limits)); // good for a run on 2 of 4 days
 console.log(summarize([], limits)); // good for a run on 0 of 0 days
+
+console.log(reasons(days[0], limits)); // []
+console.log(reasons(days[1], limits)); // []
+console.log(reasons(days[2], limits)); // ['wind']
+console.log(reasons(days[3], limits)); // ['rain']
+console.log(reasons({ rain: 40, wind: 15 }, limits)); // ['rain', 'wind'] // 기존 항목에 두 개인 경우가 없어 따로 추가
